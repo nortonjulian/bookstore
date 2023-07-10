@@ -1,0 +1,67 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/bookSchemaUpdate.json",
+    "type": "object",
+    "default": {},
+    "title": "Book Update Schema",
+    "additionalProperties": false,
+    "properties": {
+      "isbn": {
+        "type": "string",
+        "default": "",
+        "title": "The ISBN Schema",
+        "examples": ["0691161518"],
+        "minLength": 1
+      },
+      "amazon_url": {
+        "type": "string",
+        "format": "uri",
+        "default": "",
+        "title": "The Amazon URL Schema",
+        "examples": ["http://a.co/eobPtX2"],
+        "minLength": 1
+      },
+      "author": {
+        "type": "string",
+        "default": "",
+        "title": "The Author Schema",
+        "examples": ["Matthew Lane"],
+        "minLength": 1
+      },
+      "language": {
+        "type": "string",
+        "default": "",
+        "title": "The Language Schema",
+        "examples": ["english"],
+        "minLength": 1
+      },
+      "pages": {
+        "type": "integer",
+        "default": 0,
+        "title": "The Pages Schema",
+        "examples": [264],
+        "minimum": 0
+      },
+      "publisher": {
+        "type": "string",
+        "default": "",
+        "title": "The Publisher Schema",
+        "examples": ["Princeton University Press"],
+        "minLength": 1
+      },
+      "title": {
+        "type": "string",
+        "default": "",
+        "title": "The Title Schema",
+        "examples": ["Power-Up: Unlocking the Hidden Mathematics in Video Games"],
+        "minLength": 1
+      },
+      "year": {
+        "type": "integer",
+        "default": 0,
+        "title": "The Year Schema",
+        "examples": [2017],
+        "minimum": 0
+      }
+    }
+  }
