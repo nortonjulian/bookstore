@@ -1,13 +1,12 @@
 const express = require("express");
 const router = new express.Router();
-const Book = require("../models/book");
-const ExpressError = require("../expressError")
-const Ajv = require("ajv");
-const ajv = new Ajv()
-const jsonschema = require("jsonschema")
-const bookSchema = require("../schemas/bookSchema.json")
 
-const validateBook = ajv.compile(bookSchema);
+const { validate } = require("jsonschema");
+const bookSchemaNew = require("../schemas/bookSchemaNew");
+const bookSchemaUpdate = require("../schemas/bookSchemaUpdate");
+
+const Book = require("../models/book");
+
 
 /** GET / => {books: [book, ...]}  */
 
@@ -35,7 +34,7 @@ router.get("/:isbn", async function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
   try {
-    const result = jsonschema.validate(req.body, bookSchema);
+    const result = validate(req.body, bookSchemaNew);
     if (!result.valid) {
      let listOfErrors = result.errors.map(error => error.stack)
      let error = new ExpressError(listOfErrors, 400);
@@ -58,7 +57,7 @@ router.put("/:isbn", async function (req, res, next) {
         message: "Not authorized"
       })
     }
-    const result = jsonschema.validate(req.body, bookSchema);
+    const result = validate(req.body, bookSchemaUpdate);
     if (!result.valid) {
       let listOfErrors = result.errors.map(error => error.stack)
       let error = new ExpressError(listOfErrors, 400);
